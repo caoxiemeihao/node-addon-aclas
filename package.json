@@ -1,0 +1,18 @@
+{
+  "name": "node-addon-aclas",
+  "version": "0.0.5-beta.1",
+  "main": "index.js",
+  "author": "草鞋没号 <308487730@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "node-gyp rebuild",
+    "build": "node-gyp build",
+    "clean": "node-gyp clean",
+    "configure": "node-gyp configure",
+    "rebuild": "node-gyp rebuild",
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "node-gyp": "^6.1.0"
+  }
+}
