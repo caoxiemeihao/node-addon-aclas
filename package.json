@@ -14,5 +14,16 @@
   },
   "devDependencies": {
     "node-gyp": "^6.1.0"
-  }
+  },
+  "keywords": [
+    "Aclas",
+    "顶尖 Aclas",
+    "电子称",
+    "node-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:caoxiemeihao/node-addon-aclas.git"
+  },
+  "homepage": "https://github.com/caoxiemeihao/node-addon-aclas"
 }
