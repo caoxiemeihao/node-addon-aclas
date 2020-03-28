@@ -1,6 +1,6 @@
 {
   "name": "node-addon-aclas",
-  "version": "0.0.5-beta.1",
+  "version": "0.0.6",
   "main": "index.js",
   "author": "草鞋没号 <308487730@qq.com>",
   "license": "MIT",
