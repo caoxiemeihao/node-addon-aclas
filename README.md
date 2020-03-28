@@ -2,7 +2,7 @@
 > 开发部分
 
 ## usage
-- test.js
+- [https://github.com/caoxiemeihao/node-addon-aclas/blob/master/test.js](https://github.com/caoxiemeihao/node-addon-aclas/blob/master/test.js)
 
 ## 踩坑记
 - binding.gyp

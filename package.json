@@ -1,6 +1,7 @@
 {
   "name": "node-addon-aclas",
-  "version": "0.0.6",
+  "version": "0.0.7",
+  "description": "顶尖 Aclas 电子称 node.js C/C++ Addons",
   "main": "index.js",
   "author": "草鞋没号 <308487730@qq.com>",
   "license": "MIT",
