@@ -1,4 +1,5 @@
 const sdk = require('./build/Release/aclas_sdk.node');
+// const sdk = require('./build/Debug/aclas_sdk.node');
 
 // ---- code 对照码 ----
 // 0   0      正常

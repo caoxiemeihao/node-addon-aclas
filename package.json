@@ -1,6 +1,6 @@
 {
   "name": "node-addon-aclas",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "顶尖 Aclas 电子称 node.js C/C++ Addons",
   "main": "index.js",
   "author": "草鞋没号 <308487730@qq.com>",
@@ -26,5 +26,25 @@
     "type": "git",
     "url": "git@github.com:caoxiemeihao/node-addon-aclas.git"
   },
-  "homepage": "https://github.com/caoxiemeihao/node-addon-aclas"
+  "homepage": "https://github.com/caoxiemeihao/node-addon-aclas",
+  "files": [
+    "dll",
+    "txt",
+    ".gitignore",
+    "binding.gyp",
+    "index.d.ts",
+    "index.js",
+    "package.json",
+    "README.md",
+    "test.js",
+    "yarn.lock"
+  ],
+  "manifest": [
+    {
+      "blog": "AclasSDK.dll 文件绝对路径加载",
+      "date": "2020-06-11",
+      "remark": "",
+      "version": "0.1.4"
+    }
+  ]
 }

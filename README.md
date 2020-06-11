@@ -1,6 +1,9 @@
 
 > 开发部分
 
+## 联系作者
+- QQ:308487730@qq.com
+
 ## usage
 - [https://github.com/caoxiemeihao/node-addon-aclas/blob/master/test.js](https://github.com/caoxiemeihao/node-addon-aclas/blob/master/test.js)
 

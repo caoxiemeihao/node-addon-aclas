@@ -18,9 +18,9 @@ const code_dict = {
   403: '[链接超时][默认40秒]',
 };
 
-const host = '10.0.61.189';
-const callback = (json, fn = () => {}) => {
-  const { code, index, total }= json;
+const host = '192.168.1.8';
+const callback = (json, fn = () => { }) => {
+  const { code, index, total } = json;
   // 错误码、当前进度、总条数
   // console.log('->', json);
 
@@ -35,14 +35,20 @@ const callback = (json, fn = () => {}) => {
 };
 
 // PLU 码下载
-function pluFn(filename) {
-  sdk.runTask({ host, filename, type: 0x0000 }, callback);
+function pluFn(filename, dll_path) {
+  sdk.runTask({ host, filename, dll_path, type: 0x0000 }, callback);
 }
 
 // 热键下载
-function keyFn(filename) {
-  sdk.runTask({ host, filename, type: 0x0003 }, callback);
+function keyFn(filename, dll_path) {
+  sdk.runTask({ host, filename, dll_path, type: 0x0003 }, callback);
 }
 
-// pluFn(path.join(__dirname, 'txt/PLU.txt'));
-keyFn(path.join(__dirname, 'txt/key.txt'));
+pluFn(
+  path.join(__dirname, 'txt/PLU.txt'),
+  path.join(__dirname, 'dll/AclasSDK.dll'),
+);
+// keyFn(
+//   path.join(__dirname, 'txt/key.txt'),
+//   path.join(__dirname, 'dll/AclasSDK.dll')
+// );

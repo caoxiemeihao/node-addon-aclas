@@ -91,6 +91,7 @@ int g_timeout = 40;     // 操作电子称超时时间
 time_t g_lasttime;      // 超时时间哨兵变量
 char g_host[40];        // 调子称 host(char* == char 带不带 * 都能用)
 char g_filename[190];   // PLU.txt 文件名(全路径) 
+char g_dll_path[190];   // AclasSDK.dll 绝对路径
 int g_cmd_type;         // 执行操作类型
 
 void WINAPI onprogress(int err_code, int index, int total, char* user_data) {
@@ -115,7 +116,9 @@ static void run_aclas_task() {
 	char* user_data = NULL;
 	char* host = g_host; // "10.0.61.189";
 
-	HANDLE module = LoadLibrary("dll/AclasSDK.dll"); // %d -> 4194304
+	// HANDLE module = LoadLibrary("dll/AclasSDK.dll"); // %d -> 4194304
+	// 20-06-11 绝对路径
+	HANDLE module = LoadLibrary(g_dll_path);
 	UINT32 addr = MakeHost2Dword(host); // "10.0.61.189" == 167787965
 	char *filename = g_filename; // "D:\\ypsx\\node-addon-aclas\\txt\\PLU Demo.txt";
 	int DataType = g_cmd_type; // 0000 PLU, 0003 热键
@@ -308,12 +311,12 @@ static void StartJsThread(napi_env env, napi_callback_info info) {
 	// assert(napi_get_cb_info(env, info, &argc, &js_cb, NULL, (void**)(&addon_data)) == napi_ok);
 	assert(napi_get_cb_info(env, info, &argc, args, NULL, (void**)(&addon_data)) == napi_ok);
 
-	// 需要两个参数
+	// 需要两个入参
 	assert(argc >= 2);
 	// 多线程情况下，抛出异常不会被主线程捕获
 	// napi_throw_type_error(env, NULL, "Two arguments expected.");
 
-	// 第一个参数 json、第二个参数 function
+	// 第一个入参 json、第二入参 function
 	/* 开多个线程时，napi_typeof 会导致崩溃 Segmentation fault
 	napi_valuetype js_obj, js_callback;
 	assert(napi_typeof(env, args[0], &js_obj) == napi_ok);
@@ -321,19 +324,23 @@ static void StartJsThread(napi_env env, napi_callback_info info) {
 	assert(js_obj == napi_object);
 	assert(js_callback == napi_function);*/
 
-	// 取出参数
+	// 取出入参
 	napi_value host_key, host;
 	napi_value filename_key, filename;
+	napi_value dll_path_key, dll_path;
 	napi_value type_key, type;
 	assert(napi_create_string_utf8(env, "host", NAPI_AUTO_LENGTH, &host_key) == napi_ok);
 	assert(napi_create_string_utf8(env, "filename", NAPI_AUTO_LENGTH, &filename_key) == napi_ok);
+	assert(napi_create_string_utf8(env, "dll_path", NAPI_AUTO_LENGTH, &dll_path_key) == napi_ok);
 	assert(napi_create_string_utf8(env, "type", NAPI_AUTO_LENGTH, &type_key) == napi_ok);
 	assert(napi_get_property(env, args[0], host_key, &host) == napi_ok);
 	assert(napi_get_property(env, args[0], filename_key, &filename) == napi_ok);
+	assert(napi_get_property(env, args[0], dll_path_key, &dll_path) == napi_ok);
 	assert(napi_get_property(env, args[0], type_key, &type) == napi_ok);
 	// &g_host == g_host 两种写法都可以
 	assert(napi_get_value_string_utf8(env, host, g_host, sizeof(g_host), NULL) == napi_ok);
 	assert(napi_get_value_string_utf8(env, filename, g_filename, sizeof(g_filename), NULL) == napi_ok);
+	assert(napi_get_value_string_utf8(env, dll_path, g_dll_path, sizeof(g_dll_path), NULL) == napi_ok);
 	assert(napi_get_value_int32(env, type, &g_cmd_type) == napi_ok);
 
 
