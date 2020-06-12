@@ -1,6 +1,6 @@
 {
   "name": "node-addon-aclas",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "顶尖 Aclas 电子称 node.js C/C++ Addons",
   "main": "index.js",
   "author": "草鞋没号 <308487730@qq.com>",
@@ -44,10 +44,16 @@
   ],
   "manifest": [
     {
-      "blog": "AclasSDK.dll 文件绝对路径加载",
+      "blog": "['AclasSDK.dll 文件绝对路径加载','.d.ts文件补充']",
       "date": "2020-06-11",
       "remark": "",
-      "version": "0.1.4"
+      "version": "0.0.8"
+    },
+    {
+      "blog": "['修复重复下发时由于木有重置全局计数变量导致的程序崩溃']",
+      "date": "2020-06-12",
+      "remark": "",
+      "version": "0.0.9"
     }
   ]
 }

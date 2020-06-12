@@ -94,6 +94,15 @@ char g_filename[190];   // PLU.txt 文件名(全路径)
 char g_dll_path[190];   // AclasSDK.dll 绝对路径
 int g_cmd_type;         // 执行操作类型
 
+// 初始化全局变量
+void init_g_var() {
+	g_err_code = -1;
+	g_index = -1;
+	g_last_index = -1;
+	g_total = -1;
+	g_lasttime = time(NULL);
+}
+
 void WINAPI onprogress(int err_code, int index, int total, char* user_data) {
 	g_err_code = err_code;
 	g_index = index;
@@ -241,8 +250,8 @@ static void ExecuteJsWork(napi_env env, void* data) {
 	status = napi_acquire_threadsafe_function(addon_data->tsfn);
 	assert(status == napi_ok);
 
-	// 更新超时时间
-	g_lasttime = time(NULL);
+	// 初始化全局数据
+	init_g_var();
 
 	while (true)
 	{
@@ -269,6 +278,7 @@ static void ExecuteJsWork(napi_env env, void* data) {
 			g_last_index = g_index;
 		}
 
+		// 轮询时间间隔、不要给 CPU 压力 😁
 		Sleep(9);
 	}
 

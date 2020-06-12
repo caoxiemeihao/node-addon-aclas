@@ -1,3 +1,4 @@
+/** 下发命令入参 */
 export interface RunTaskParams {
   /** 电子称 IP 地址 */
   host: string
@@ -9,6 +10,7 @@ export interface RunTaskParams {
   dll_path: string
 }
 
+/** 下发状态码 */
 export interface ErrorCode {
   256: '已初始化',
   257: '未初始化',
@@ -26,6 +28,7 @@ export interface ErrorCode {
   403: '[链接超时][默认40秒]',
 }
 
+/** 下发回调 */
 export interface CallbackArgs {
   /** 状态码 */
   code: keyof ErrorCode
@@ -35,6 +38,7 @@ export interface CallbackArgs {
   total: number
 }
 
+/** 顶尖 Aclas */
 export interface Aclas {
   /** 下发任务入口 */
   runTask: (params: RunTaskParams, callback: (arg0: CallbackArgs) => void) => void
@@ -42,3 +46,31 @@ export interface Aclas {
 
 declare const aclas: Aclas
 export default aclas
+
+// -----------------------------------------------------------
+
+/** 单品资料 */
+export interface PluItem {
+  /** 生鲜码：自增列 */
+  ID: number
+  /** 货号 */
+  ItemCode: number
+  /** 条码起始码 */
+  DepartmentID?: number
+  /** 类别编号 */
+  GroupID?: number
+  /** 名称1 */
+  Name1: string
+  /** 名称2 */
+  Name2?: string
+  /** 名称3 */
+  Name3?: string
+  /** 单价 */
+  Price: number
+  /** 重量单位，7(500g)，4(kg) */
+  UnitID: 7 | 4
+  /** 条码类型1(没用) */
+  BarcodeType1?: number
+  /** 条码类型2(有用) */
+  BarcodeType2: number
+}
