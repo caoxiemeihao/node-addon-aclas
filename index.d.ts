@@ -1,4 +1,3 @@
-
 export interface RunTaskParams {
   /** 电子称 IP 地址 */
   host: string
@@ -10,21 +9,21 @@ export interface RunTaskParams {
   dll_path: string
 }
 
-export enum ErrorCode {
-  256 = '已初始化',
-  257 = '未初始化',
-  258 = '设备不存在',
-  259 = '不支持的协议类型',
-  260 = '该数据类型不支持此操作',
-  261 = '该数据类型不支持',
-  264 = '无法打开输入文件',
-  265 = '字段数与内容数不匹配',
-  266 = '通讯数据异常',
-  267 = '解析数据异常',
-  268 = 'CodePage错误',
-  269 = '无法创建输出文件',
-  404 = '[LoadLibrary][未加载到AclasSDK.dll]',
-  403 = '[链接超时][默认40秒]',
+export interface ErrorCode {
+  256: '已初始化',
+  257: '未初始化',
+  258: '设备不存在',
+  259: '不支持的协议类型',
+  260: '该数据类型不支持此操作',
+  261: '该数据类型不支持',
+  264: '无法打开输入文件',
+  265: '字段数与内容数不匹配',
+  266: '通讯数据异常',
+  267: '解析数据异常',
+  268: 'CodePage错误',
+  269: '无法创建输出文件',
+  404: '[LoadLibrary][未加载到AclasSDK.dll]',
+  403: '[链接超时][默认40秒]',
 }
 
 export interface CallbackArgs {
@@ -41,4 +40,5 @@ export interface Aclas {
   runTask: (params: RunTaskParams, callback: (arg0: CallbackArgs) => void) => void
 }
 
-export default Aclas
+declare const aclas: Aclas
+export default aclas
