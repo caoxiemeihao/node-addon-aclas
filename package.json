@@ -22,9 +22,6 @@
     "电子称",
     "node-addon"
   ],
-  "publishConfig": {
-    "registry": "http://nexus.ypsx-internal.com/repository/npm-private/"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:caoxiemeihao/node-addon-aclas.git"
