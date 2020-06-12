@@ -44,6 +44,8 @@ function keyFn(filename, dll_path) {
   sdk.runTask({ host, filename, dll_path, type: 0x0003 }, callback);
 }
 
+// 自定义条码 0x0011
+
 pluFn(
   path.join(__dirname, 'txt/PLU.txt'),
   path.join(__dirname, 'dll/AclasSDK.dll'),

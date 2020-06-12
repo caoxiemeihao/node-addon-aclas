@@ -26,6 +26,9 @@ export interface ErrorCode {
   269: '无法创建输出文件',
   404: '[LoadLibrary][未加载到AclasSDK.dll]',
   403: '[链接超时][默认40秒]',
+
+  0: 'sucessed',
+  1: 'processing',
 }
 
 /** 下发回调 */
