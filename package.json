@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/caoxiemeihao/node-addon-aclas",
   "files": [
+    "build",
     "dll",
     "txt",
     ".gitignore",

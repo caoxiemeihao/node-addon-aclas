@@ -4,6 +4,13 @@
 ## 联系作者
 - QQ:308487730@qq.com
 
+## usage 20-06-14
+- 已提供编译好的 build/Release/aclas_sdk.node 文件
+- 你可能不用再编译了，直接引用 aclas_sdk.node 文件即可
+```js
+const sdk = require('./build/Release/aclas_sdk.node')
+```
+
 ## usage
 - [https://github.com/caoxiemeihao/node-addon-aclas/blob/master/test.js](https://github.com/caoxiemeihao/node-addon-aclas/blob/master/test.js)
 
