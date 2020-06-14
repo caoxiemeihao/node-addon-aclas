@@ -93,6 +93,7 @@ char g_host[40];        // 调子称 host(char* == char 带不带 * 都能用)
 char g_filename[190];   // PLU.txt 文件名(全路径) 
 char g_dll_path[190];   // AclasSDK.dll 绝对路径
 int g_cmd_type;         // 执行操作类型
+bool g_process = false; // 是否正在执行任务
 
 // 初始化全局变量
 void init_g_var() {
@@ -167,6 +168,9 @@ static void SdkWorkComplete(napi_env env, napi_status status, void* data) {
 
 	// 回收内存
 	sdk_data->work = NULL;
+
+	// 状态完成
+	g_process = false;
 }
 
 static void StartSdkThread(napi_env env, napi_callback_info info) {
@@ -310,6 +314,11 @@ static void JsWorkComplete(napi_env env, napi_status status, void* data) {
 }
 
 static void StartJsThread(napi_env env, napi_callback_info info) {
+	if (g_process) { // 20-06-13 重复调用崩溃问题
+		return;
+	}
+	g_process = true;
+
 	size_t argc = 2; // 接受两个参数
 	napi_value args[2];
 	napi_value js_cb, work_name;

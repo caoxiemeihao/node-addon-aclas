@@ -1,6 +1,6 @@
 {
   "name": "node-addon-aclas",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "顶尖 Aclas 电子称 node.js C/C++ Addons",
   "main": "index.js",
   "author": "草鞋没号 <308487730@qq.com>",
@@ -51,6 +51,12 @@
       "date": "2020-06-12",
       "remark": "",
       "version": "0.0.9"
+    },
+    {
+      "blog": "['增加哨兵变量标记下发状态，修复重复下发导致的程序崩溃']",
+      "date": "2020-06-13",
+      "remark": "",
+      "version": "0.1.0"
     }
   ]
 }
