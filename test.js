@@ -36,7 +36,13 @@ const callback = (json, fn = () => { }) => {
 
 // PLU 码下载
 function pluFn(filename, dll_path) {
-  sdk.runTask({ host, filename, dll_path, type: 0x0000 }, callback);
+  sdk.runTask({
+    host,
+    filename,
+    dll_path,
+    type: 0x0000,
+    timeout: 10, // 可选的超时时间 
+  }, callback);
 }
 
 // 热键下载

@@ -314,7 +314,8 @@ static void JsWorkComplete(napi_env env, napi_status status, void* data) {
 }
 
 static void StartJsThread(napi_env env, napi_callback_info info) {
-	if (g_process) { // 20-06-13 重复调用崩溃问题
+	Sleep(90); // 20-06-27 给线程结束重置留点儿时间
+	if (g_process) { // 20-06-13 尝试修复重复调用崩溃
 		return;
 	}
 	g_process = true;
@@ -361,6 +362,24 @@ static void StartJsThread(napi_env env, napi_callback_info info) {
 	assert(napi_get_value_string_utf8(env, filename, g_filename, sizeof(g_filename), NULL) == napi_ok);
 	assert(napi_get_value_string_utf8(env, dll_path, g_dll_path, sizeof(g_dll_path), NULL) == napi_ok);
 	assert(napi_get_value_int32(env, type, &g_cmd_type) == napi_ok);
+
+	// 20-06-17 增加超时时间配置
+	// 必须赋初值，下面的 printf 才会打印 1 or 0
+	// 没赋初值打印的是内存地址 = =
+	bool *has_timeout = false;
+	napi_value timeout_key, timeout;
+	assert(napi_create_string_utf8(env, "timeout", NAPI_AUTO_LENGTH, &timeout_key) == napi_ok);
+	assert(napi_has_property(env, args[0], timeout_key, &has_timeout) == napi_ok);
+	// printf("%d\n", has_timeout);
+	if (has_timeout) {
+		assert(napi_get_property(env, args[0], timeout_key, &timeout) == napi_ok);
+		assert(napi_get_value_int32(env, timeout, &g_timeout) == napi_ok);
+	}
+
+	//assert(napi_create_string_utf8(env, "timeout", NAPI_AUTO_LENGTH, &timeout_key) == napi_ok);
+	//assert(napi_get_property(env, args[0], timeout_key, &timeout) == napi_ok);
+
+	//printf("%d\n---", timeout);
 
 
 	// 判断是否有未正确释放的线程
