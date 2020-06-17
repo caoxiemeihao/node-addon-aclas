@@ -7,7 +7,9 @@ export interface RunTaskParams {
   /** 下发指令，具体看 Aclas 文档 */
   type: number
   /** .dll 文件绝对路径 */
-  dll_path: string
+  dll_path: string,
+  /** 超时时间(单位秒，默认40) */
+  timeout?: number
 }
 
 /** 下发状态码 */
