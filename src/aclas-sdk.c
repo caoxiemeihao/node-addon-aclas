@@ -314,7 +314,7 @@ static void JsWorkComplete(napi_env env, napi_status status, void* data) {
 }
 
 static void StartJsThread(napi_env env, napi_callback_info info) {
-	Sleep(90); // 20-06-27 给线程结束重置留点儿时间
+	// Sleep(90); // 20-06-27 给线程结束重置留点儿时间|20-07-07 remove
 	if (g_process) { // 20-06-13 尝试修复重复调用崩溃
 		return;
 	}
